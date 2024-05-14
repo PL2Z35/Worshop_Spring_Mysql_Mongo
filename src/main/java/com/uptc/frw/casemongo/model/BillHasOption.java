@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class BillHasOption {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
