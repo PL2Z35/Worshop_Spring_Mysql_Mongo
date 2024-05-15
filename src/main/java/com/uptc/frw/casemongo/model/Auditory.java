@@ -1,13 +1,11 @@
 package com.uptc.frw.casemongo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
@@ -15,16 +13,16 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Document(collection = "auditories")
 public class Auditory {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idAuditory;
+    private String idAuditory;
     private String nameTable;
     private String oldRegister;
     private String newRegister;
     private String operation;
     private Date date;
-
+    @PrePersist
+    protected void onCreate() {
+        date = new Date();
+    }
 }
