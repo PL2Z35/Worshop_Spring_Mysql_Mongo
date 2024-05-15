@@ -22,5 +22,4 @@ public class BillHasOption {
     @ManyToOne
     @JoinColumn(name = "idCarOption")
     private CarOption carOption;
-
 }
