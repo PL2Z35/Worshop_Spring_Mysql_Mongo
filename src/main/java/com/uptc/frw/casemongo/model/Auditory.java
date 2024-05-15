@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Audiori {
+public class Auditory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
