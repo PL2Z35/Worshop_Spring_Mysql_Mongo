@@ -5,11 +5,28 @@ import com.uptc.frw.casemongo.service.CarOptionService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/carOption")
 @AllArgsConstructor
 public class CarOptionController {
     private CarOptionService carOptionService;
+
+    @GetMapping
+    public List<CarOption> getAll(){
+        return carOptionService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public CarOption getById(@PathVariable long id){
+        return carOptionService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable long id){
+        carOptionService.deleteById(id);
+    }
 
     @PostMapping
     private CarOption save(@RequestBody CarOption carOption){

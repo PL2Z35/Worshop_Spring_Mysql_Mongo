@@ -12,9 +12,10 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final AuditoryService auditoryService;
 
     public Car save(Car car) {
-        return carRepository.save(car);
+        return (Car) auditoryService.save("CAR", findById(car.getIdCar()), carRepository.save(car));
     }
 
     public List<Car> findAll() {
@@ -26,6 +27,7 @@ public class CarService {
     }
 
     public void deleteById(Long id) {
+        auditoryService.delete("CAR", findById(id));
         carRepository.deleteById(id);
     }
 
