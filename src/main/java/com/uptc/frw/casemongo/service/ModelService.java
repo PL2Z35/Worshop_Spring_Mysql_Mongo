@@ -14,7 +14,7 @@ public class ModelService {
     private final AuditoryService auditoryService;
 
     public Model save(Model model) {
-        return (Model) auditoryService.save("MODEL", findById(model.getIdModel()), modelRepository.save(model));
+        return (Model) auditoryService.save("MODEL", findById(model.getIdModel()), model,  modelRepository.save(model));
     }
 
     public List<Model> findAll() {

@@ -19,7 +19,7 @@ public class BillService {
     private final AuditoryService auditoryService;
 
     public Bill save(Bill bill) {
-        return (Bill) auditoryService.save("BILL", findById(bill.getIdBill()), billRepository.save(bill));
+        return (Bill) auditoryService.save("BILL", findById(bill.getIdBill()), bill, billRepository.save(bill));
     }
 
     public List<Bill> findAll() {

@@ -1,5 +1,6 @@
 package com.uptc.frw.casemongo.service;
 
+import com.uptc.frw.casemongo.model.Model;
 import com.uptc.frw.casemongo.model.Person;
 import com.uptc.frw.casemongo.repository.PersonRepository;
 import lombok.AllArgsConstructor;
@@ -12,9 +13,10 @@ import java.util.List;
 public class PersonService {
 
     private final PersonRepository personRepository;
+    private final AuditoryService auditoryService;
 
     public Person save(Person person) {
-        return personRepository.save(person);
+        return (Person) auditoryService.save("MODEL", findById(person.getIdPerson()), person,  personRepository.save(person));
     }
 
     public List<Person> findAll() {

@@ -15,13 +15,16 @@ public class AuditoryService {
 
     private final AuditoryRepository auditoryRepository;
 
-    public Object save(String table, Object objectOperation, Object object) {
+    public Object save(String table, Object objectOperation, Object objectOld, Object objectNew) {
         Auditory auditory = new Auditory();
         auditory.setOperation(objectOperation == null?String.valueOf(CRUD.INSERT):String.valueOf(CRUD.UPDATE));
         auditory.setNameTable(table);
-        auditory.setNewRegister(new Json().toJson(object));
+        auditory.setNewRegister(new Json().toJson(objectNew));
+        if(objectOld != null){
+            auditory.setOldRegister(new Json().toJson(objectOld));
+        }
         auditoryRepository.save(auditory);
-        return object;
+        return objectNew;
     }
 
     public void delete(String table, Object object) {

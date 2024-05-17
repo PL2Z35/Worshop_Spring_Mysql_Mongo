@@ -18,7 +18,7 @@ public class CarOptionService {
     private final AuditoryService auditoryService;
 
     public CarOption save(CarOption carOption) {
-        return (CarOption) auditoryService.save("CAR_OPTION", findById(carOption.getIdCarOption()), carOptionRepository.save(carOption));
+        return (CarOption) auditoryService.save("CAR_OPTION", findById(carOption.getIdCarOption()), carOption, carOptionRepository.save(carOption));
     }
 
     public List<CarOption> findAll() {
