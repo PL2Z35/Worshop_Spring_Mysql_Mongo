@@ -23,6 +23,8 @@ public class Car {
     private String displacement;
     private String registration;
     private double price;
+    @Transient
+    private long idModel;
     @ManyToOne
     @JoinColumn(name = "ID_MODEL", nullable = false)
     private Model model;

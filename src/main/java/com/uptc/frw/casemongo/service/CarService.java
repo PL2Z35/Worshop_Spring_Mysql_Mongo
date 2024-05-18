@@ -13,8 +13,10 @@ public class CarService {
 
     private final CarRepository carRepository;
     private final AuditoryService auditoryService;
+    private final ModelService modelService;
 
     public Car save(Car car) {
+        car.setModel(modelService.findById(car.getIdModel()));
         return (Car) auditoryService.save("CAR", findById(car.getIdCar()), car, carRepository.save(car));
     }
 

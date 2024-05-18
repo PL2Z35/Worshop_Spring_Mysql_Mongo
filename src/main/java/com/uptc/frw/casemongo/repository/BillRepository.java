@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 public interface BillRepository extends JpaRepository<Bill, Long> {
 
-    @Query("select sum (bho.price) from BillHasOption bho where bho.id = ?1")
-    public long prices (long idBill);
+    @Query("select sum (bho.price) from BillHasOption bho where bho.bill.idBill = ?1")
+    long getPriceByBill (long idBill);
 }

@@ -15,10 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Bill {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idBill;
+    @Transient
     private double price;
     @ManyToOne
     @JoinColumn(name = "ID_PERSON_CLIENT", nullable = false)
@@ -34,11 +34,18 @@ public class Bill {
     private Car carOld;
     @Column( updatable = false)
     private Date date;
+    @Transient
+    private long idpersonClient;
+    @Transient
+    private long idpersonSeller;
+    @Transient
+    private long idcarNew;
+    @Transient
+    private long idcarOld;
     @PrePersist
     protected void onCreate() {
         date = new Date();
     }
     @OneToMany(mappedBy = "bill")
     private List<BillHasOption> billHasOptions;
-
 }
